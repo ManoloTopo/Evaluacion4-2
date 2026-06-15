@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="refresh" content="2">
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            background-color: #F2A1FF;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #tabla-principal {
+            border-collapse: collapse;
+            margin: 20px auto 0 auto;
+        }
+
+        #subtitulo-pagina {
+            color: #333;
+            font-size: 1.1em;
+            margin-top: -5px;
+        }
+
+        #q1-1, #q1-2, #q1-3, #q1-4,
+        #q2-1, #q2-2, #q2-3, #q2-4,
+        #q3-1, #q3-2, #q3-3, #q3-4,
+        #q4-1, #q4-2, #q4-3, #q4-4 {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #333;
+            text-align: center;
+            font-weight: bold;
+            background-color: grey;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        #activo {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #333;
+            text-align: center;
+            font-weight: bold;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s ease;
+        }
+
+        #menu-navegacion {
+            margin-top: 30px;
+        }
+
+        /* Cambiado a formato exclusivo de link de texto */
+        #btn-x, #btn-y {
+            display: inline-block;
+            margin: 0 15px;
+            color: #333;
+            text-decoration: underline; /* Subrayado clásico de link */
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        #btn-x:hover, #btn-y:hover {
+            color: black; /* Cambia sutilmente al pasar el cursor */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Monitoreo de Posición XY</h1>
+    <p id="subtitulo-pagina">Visualización en tiempo real de la matriz 4x4</p>
+
+    <hr style="width: 50px; margin: 20px auto;">
+
+    {% set col1 = (ejeX <= -4.75) %}
+    {% set col2 = (ejeX > -4.75 and ejeX <= 0) %}
+    {% set col3 = (ejeX > 0 and ejeX <= 4.75) %}
+    {% set col4 = (ejeX > 4.75) %}
+
+    {% set fila1 = (ejeY > 4.75) %}
+    {% set fila2 = (ejeY > 0 and ejeY <= 4.75) %}
+    {% set fila3 = (ejeY > -4.75 and ejeY <= 0) %}
+    {% set fila4 = (ejeY <= -4.75) %}
+
+    <table id="tabla-principal">
+        <tr>
+            <td id="{% if fila1 and col1 %}activo{% else %}q1-1{% endif %}">Q1.1</td>
+            <td id="{% if fila1 and col2 %}activo{% else %}q1-2{% endif %}">Q1.2</td>
+            <td id="{% if fila1 and col3 %}activo{% else %}q1-3{% endif %}">Q1.3</td>
+            <td id="{% if fila1 and col4 %}activo{% else %}q1-4{% endif %}">Q1.4</td>
+        </tr>
+        <tr>
+            <td id="{% if fila2 and col1 %}activo{% else %}q2-1{% endif %}">Q2.1</td>
+            <td id="{% if fila2 and col2 %}activo{% else %}q2-2{% endif %}">Q2.2</td>
+            <td id="{% if fila2 and col3 %}activo{% else %}q2-3{% endif %}">Q2.3</td>
+            <td id="{% if fila2 and col4 %}activo{% else %}q2-4{% endif %}">Q2.4</td>
+        </tr>
+        <tr>
+            <td id="{% if fila3 and col1 %}activo{% else %}q3-1{% endif %}">Q3.1</td>
+            <td id="{% if fila3 and col2 %}activo{% else %}q3-2{% endif %}">Q3.2</td>
+            <td id="{% if fila3 and col3 %}activo{% else %}q3-3{% endif %}">Q3.3</td>
+            <td id="{% if fila3 and col4 %}activo{% else %}q3-4{% endif %}">Q3.4</td>
+        </tr>
+        <tr>
+            <td id="{% if fila4 and col1 %}activo{% else %}q4-1{% endif %}">Q4.1</td>
+            <td id="{% if fila4 and col2 %}activo{% else %}q4-2{% endif %}">Q4.2</td>
+            <td id="{% if fila4 and col3 %}activo{% else %}q4-3{% endif %}">Q4.3</td>
+            <td id="{% if fila4 and col4 %}activo{% else %}q4-4{% endif %}">Q4.4</td>
+        </tr>
+    </table>
+
+    <div id="menu-navegacion">
+        <a href="/eje_x" id="btn-x">Ver Solo Eje X</a>
+        <a href="/eje_y" id="btn-y">Ver Solo Eje Y</a>
+    </div>
+
+</body>
+</html>

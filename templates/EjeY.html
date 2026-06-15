@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="refresh" content="2">
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            background-color: #F2A1FF;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        #tabla-y {
+            border-collapse: collapse;
+            margin: 30px auto;
+        }
+
+        #subtitulo-y {
+            color: #333;
+            font-size: 1.1em;
+            margin-top: -5px;
+        }
+
+        #y1, #y2, #y3, #y4 {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #333;
+            text-align: center;
+            font-weight: bold;
+            background-color: grey;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        #activo {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #333;
+            text-align: center;
+            font-weight: bold;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s ease;
+        }
+
+        #menu-navegacion {
+            margin-top: 40px;
+        }
+
+        /* Cambiado a formato exclusivo de link de texto */
+        #btn-matriz, #btn-x {
+            display: inline-block;
+            margin: 0 15px;
+            color: #333;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        #btn-matriz:hover, #btn-x:hover {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Monitoreo del Eje Y</h1>
+    <p id="subtitulo-y">Visualización en tiempo real de la columna 1x4</p>
+
+    <hr style="width: 50px; margin: 20px auto;">
+
+    {% set fila1 = (ejeY > 4.75) %}
+    {% set fila2 = (ejeY > 0 and ejeY <= 4.75) %}
+    {% set fila3 = (ejeY > -4.75 and ejeY <= 0) %}
+    {% set fila4 = (ejeY <= -4.75) %}
+
+    <table id="tabla-y">
+        <tr>
+            <td id="{% if fila1 %}activo{% else %}y1{% endif %}">Y1</td>
+        </tr>
+        <tr>
+            <td id="{% if fila2 %}activo{% else %}y2{% endif %}">Y2</td>
+        </tr>
+        <tr>
+            <td id="{% if fila3 %}activo{% else %}y3{% endif %}">Y3</td>
+        </tr>
+        <tr>
+            <td id="{% if fila4 %}activo{% else %}y4{% endif %}">Y4</td>
+        </tr>
+    </table>
+
+    <div id="menu-navegacion">
+        <a href="/" id="btn-matriz">Ver Matriz 4x4</a>
+        <a href="/eje_x" id="btn-x">Ver Solo Eje X (4x1)</a>
+    </div>
+
+</body>
+</html>
