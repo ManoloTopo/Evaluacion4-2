@@ -21,4 +21,4 @@ Fotos de las vistas:
 
 3. Eje Y
 
-      ![vista eje y](https://github.com/ManoloTopo/Evaluacion4-2/blob/main/Capturas/Visualizacion%20Eje%20Y.png)
+![vista eje y](https://github.com/ManoloTopo/Evaluacion4-2/blob/main/Capturas/Visualizacion%20Eje%20Y.png)
